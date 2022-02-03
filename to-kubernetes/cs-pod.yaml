@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coldstorage
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coldstorage
+  template: # template for the pods
+    metadata:
+      labels:
+        app: coldstorage
+    spec:
+      containers:
+      - name: chrome-colds
+        image: enyiakwu/selenium-chromecolds:latest
+        ports:
+          - containerPort: 4444

@@ -1,0 +1,19 @@
+# here defines a loadbalanced service for connectivity of the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: coldstorage
+  namespace: default
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for other services or maybe
+  # external users to connect to (eg browser)
+  selector:
+    app: coldstorage
+  ports:
+  - name: http
+    port: 4444
+    protocol: TCP
+    targetPort: 4444
+    #nodePort: 79000
+  type: LoadBalancer
